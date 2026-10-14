@@ -1,0 +1,30 @@
+[
+  {
+    "name": "angle_y",
+    "label": "Angle (RY)",
+    "max_features": 12,
+    "qubit_formula": "N",
+    "description": "One rotation per feature, no entanglement. Cheapest and the honest classical-simulable baseline: the kernel factorises into a product of per-qubit overlaps. Use it as the control."
+  },
+  {
+    "name": "angle_x2",
+    "label": "Angle x2 (ring-entangled)",
+    "max_features": 12,
+    "qubit_formula": "N",
+    "description": "Encode, entangle with a CNOT ring, then re-encode. The ring sits between two data layers so it genuinely changes the kernel, unlike a trailing ring, which cancels."
+  },
+  {
+    "name": "zz",
+    "label": "ZZ Feature Map (full entanglement)",
+    "max_features": 10,
+    "qubit_formula": "N",
+    "description": "Second-order Pauli-Z map with data-dependent two-qubit rotations. The pairwise angle depends on two features at once, which no product kernel can represent. Capped at 10 features because the gate count grows as N^2."
+  },
+  {
+    "name": "amplitude",
+    "label": "Amplitude (log2 compression)",
+    "max_features": 64,
+    "qubit_formula": "ceil(log2 N)",
+    "description": "Packs N features into ceil(log2 N) qubits as state amplitudes. 16 features fit in 4 qubits. Cost moves from gate count into state preparation, which the simulator does for free and real hardware does not."
+  }
+]

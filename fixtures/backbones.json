@@ -1,0 +1,26 @@
+[
+  {
+    "name": "resnet18",
+    "label": "ResNet18 (ImageNet)",
+    "dim": 512,
+    "input_size": 224
+  },
+  {
+    "name": "resnet50",
+    "label": "ResNet50 (ImageNet)",
+    "dim": 2048,
+    "input_size": 224
+  },
+  {
+    "name": "resnet50_pool1",
+    "label": "ResNet50 early block (edge features)",
+    "dim": 64,
+    "input_size": 224
+  },
+  {
+    "name": "pixels",
+    "label": "Raw pixels 16x16 (no CNN)",
+    "dim": 256,
+    "input_size": 224
+  }
+]

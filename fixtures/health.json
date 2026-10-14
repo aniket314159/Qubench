@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "version": "0.1.0",
+  "wired": {
+    "encodings": true,
+    "models": true,
+    "backbones": true,
+    "estimate": true,
+    "benchmark": true,
+    "predict": true
+  }
+}

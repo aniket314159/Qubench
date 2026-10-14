@@ -1,0 +1,211 @@
+[
+  {
+    "op": "crop_border",
+    "label": "Crop border",
+    "order": 100,
+    "params_schema": {
+      "ratio": {
+        "type": "float",
+        "min": 0.0,
+        "max": 0.25,
+        "default": 0.03,
+        "label": "Border ratio",
+        "step": 0.01
+      }
+    },
+    "locked": false,
+    "description": "Trim scan margins and report header bars."
+  },
+  {
+    "op": "deskew",
+    "label": "Deskew",
+    "order": 200,
+    "params_schema": {
+      "max_angle": {
+        "type": "float",
+        "min": 1.0,
+        "max": 30.0,
+        "default": 10.0,
+        "label": "Max correction \u00b0",
+        "step": 1.0
+      }
+    },
+    "locked": false,
+    "description": "Straighten a crooked scan or photo."
+  },
+  {
+    "op": "remove_grid",
+    "label": "Remove grid",
+    "order": 300,
+    "params_schema": {
+      "mode": {
+        "type": "enum",
+        "options": [
+          "color",
+          "adaptive"
+        ],
+        "default": "color",
+        "label": "Mode",
+        "help": "color needs the original pink paper; adaptive works on grayscale scans too"
+      },
+      "sat_thresh": {
+        "type": "int",
+        "min": 10,
+        "max": 200,
+        "default": 40,
+        "label": "Colour sensitivity"
+      }
+    },
+    "locked": false,
+    "description": "Suppress ECG graph paper, keep the trace. Runs before grayscale \u2014 it needs the colour."
+  },
+  {
+    "op": "grayscale",
+    "label": "Grayscale",
+    "order": 400,
+    "params_schema": {},
+    "locked": false,
+    "description": "Colour carries no signal once the grid is gone."
+  },
+  {
+    "op": "clahe",
+    "label": "CLAHE (local contrast)",
+    "order": 500,
+    "params_schema": {
+      "clip": {
+        "type": "float",
+        "min": 1.0,
+        "max": 8.0,
+        "default": 2.0,
+        "label": "Clip limit",
+        "step": 0.5
+      },
+      "grid": {
+        "type": "int",
+        "min": 2,
+        "max": 16,
+        "default": 8,
+        "label": "Tile grid"
+      }
+    },
+    "locked": false,
+    "description": "Rescues faint traces on photos. Amplifies noise on clean scans."
+  },
+  {
+    "op": "denoise",
+    "label": "Denoise",
+    "order": 600,
+    "params_schema": {
+      "method": {
+        "type": "enum",
+        "options": [
+          "median",
+          "nlmeans"
+        ],
+        "default": "median",
+        "label": "Method",
+        "help": "nlmeans is ~300ms/image \u2014 five minutes on 1000 images"
+      },
+      "strength": {
+        "type": "int",
+        "min": 1,
+        "max": 9,
+        "default": 3,
+        "label": "Strength"
+      }
+    },
+    "locked": false,
+    "description": "Remove speckle from photographed printouts."
+  },
+  {
+    "op": "binarize",
+    "label": "Binarize",
+    "order": 700,
+    "params_schema": {
+      "method": {
+        "type": "enum",
+        "options": [
+          "fixed",
+          "otsu",
+          "adaptive"
+        ],
+        "default": "fixed",
+        "label": "Method"
+      },
+      "thr": {
+        "type": "int",
+        "min": 0,
+        "max": 255,
+        "default": 200,
+        "label": "Threshold (fixed only)"
+      }
+    },
+    "locked": false,
+    "description": "Black trace on white background."
+  },
+  {
+    "op": "remove_lead_lines",
+    "label": "Remove lead separators",
+    "order": 800,
+    "params_schema": {
+      "axis": {
+        "type": "enum",
+        "options": [
+          "vertical",
+          "horizontal"
+        ],
+        "default": "vertical",
+        "label": "Axis"
+      },
+      "min_frac": {
+        "type": "float",
+        "min": 0.2,
+        "max": 1.0,
+        "default": 0.5,
+        "label": "Min length",
+        "step": 0.05
+      },
+      "thickness": {
+        "type": "int",
+        "min": 1,
+        "max": 9,
+        "default": 3,
+        "label": "Erase thickness"
+      }
+    },
+    "locked": false,
+    "description": "Erase the rules between lead readings. They are identical in every image, so they are noise the model can only overfit."
+  },
+  {
+    "op": "invert",
+    "label": "Invert",
+    "order": 850,
+    "params_schema": {},
+    "locked": false,
+    "description": "White trace on black, closer to ImageNet statistics."
+  },
+  {
+    "op": "to_rgb",
+    "label": "To RGB",
+    "order": 900,
+    "params_schema": {},
+    "locked": true,
+    "description": "Guarantees the uint8 (H, W, 3) handoff type."
+  },
+  {
+    "op": "resize",
+    "label": "Resize 224",
+    "order": 1000,
+    "params_schema": {
+      "size": {
+        "type": "int",
+        "min": 64,
+        "max": 512,
+        "default": 224,
+        "label": "Size"
+      }
+    },
+    "locked": true,
+    "description": "Backbone input size."
+  }
+]

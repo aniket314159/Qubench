@@ -1,0 +1,6 @@
+{
+  "errors": [],
+  "warnings": [
+    "Classes are imbalanced (284:172). Compare macro F1 rather than accuracy \u2014 accuracy flatters the majority class."
+  ]
+}

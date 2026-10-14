@@ -1,0 +1,128 @@
+[
+  {
+    "name": "raw",
+    "label": "Raw (resize only)",
+    "ops": [],
+    "description": "No cleanup. The honest baseline to benchmark against."
+  },
+  {
+    "name": "ecg_clean_scan",
+    "label": "ECG \u2014 clean scan",
+    "ops": [
+      {
+        "op": "crop_border",
+        "params": {
+          "ratio": 0.03
+        }
+      },
+      {
+        "op": "grayscale",
+        "params": {}
+      },
+      {
+        "op": "binarize",
+        "params": {
+          "method": "fixed",
+          "thr": 200
+        }
+      },
+      {
+        "op": "remove_lead_lines",
+        "params": {
+          "axis": "vertical"
+        }
+      }
+    ],
+    "description": "Flatbed scans of ECG printouts. Start here."
+  },
+  {
+    "name": "ecg_grid_paper",
+    "label": "ECG \u2014 pink grid paper",
+    "ops": [
+      {
+        "op": "crop_border",
+        "params": {
+          "ratio": 0.03
+        }
+      },
+      {
+        "op": "remove_grid",
+        "params": {
+          "mode": "color",
+          "sat_thresh": 40
+        }
+      },
+      {
+        "op": "grayscale",
+        "params": {}
+      },
+      {
+        "op": "clahe",
+        "params": {
+          "clip": 2.0
+        }
+      },
+      {
+        "op": "binarize",
+        "params": {
+          "method": "otsu"
+        }
+      },
+      {
+        "op": "remove_lead_lines",
+        "params": {
+          "axis": "vertical"
+        }
+      }
+    ],
+    "description": "Colour scans where the graph paper is still visible."
+  },
+  {
+    "name": "ecg_photo",
+    "label": "ECG \u2014 phone photo",
+    "ops": [
+      {
+        "op": "crop_border",
+        "params": {
+          "ratio": 0.05
+        }
+      },
+      {
+        "op": "deskew",
+        "params": {
+          "max_angle": 10.0
+        }
+      },
+      {
+        "op": "remove_grid",
+        "params": {
+          "mode": "adaptive"
+        }
+      },
+      {
+        "op": "grayscale",
+        "params": {}
+      },
+      {
+        "op": "clahe",
+        "params": {
+          "clip": 3.0
+        }
+      },
+      {
+        "op": "denoise",
+        "params": {
+          "method": "median",
+          "strength": 3
+        }
+      },
+      {
+        "op": "binarize",
+        "params": {
+          "method": "adaptive"
+        }
+      }
+    ],
+    "description": "Handheld photos: crooked, uneven lighting, shadows."
+  }
+]

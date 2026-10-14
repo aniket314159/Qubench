@@ -1,0 +1,84 @@
+# One ignore file for the whole repo.
+#
+# Git composes nested .gitignore files happily, so frontend/.gitignore was not
+# wrong — but two files means a rule can be added to the one that does not
+# apply, and nothing tells you. Everything the Vite scaffold ignored is folded
+# in below; frontend/.gitignore can be deleted.
+
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.python-version
+
+# --- virtualenvs ----------------------------------------------------------
+.venv/
+venv/
+env/
+
+# --- generated data -------------------------------------------------------
+# Datasets, embedding caches and checkpoints are large, binary, and
+# machine-specific. Committing them means merge conflicts on runs.json every
+# pull and a repo that clones in ten minutes.
+# The directories survive via .gitkeep so core/paths.py has somewhere to write
+# on a fresh checkout; the contents do not.
+storage/datasets/*
+storage/artifacts/*
+storage/checkpoints/*
+storage/datasets.json
+storage/runs.json
+storage/*.corrupt-*.json
+!storage/**/.gitkeep
+
+# Fitted on the machine that ran scripts/calibrate.py, so it is wrong
+# everywhere else. Regenerate rather than share.
+storage/calibration.json
+
+# --- node / vite ----------------------------------------------------------
+# Patterns without a leading path match at any depth, which is what lets this
+# one file cover frontend/ and anything added beside it later.
+node_modules/
+dist/
+dist-ssr/
+*.local
+.vite/
+
+# --- logs -----------------------------------------------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# --- local env ------------------------------------------------------------
+# .env.datasets holds shell exports for dataset ids, local to whoever
+# ingested them.
+.env
+.env.*
+!.env.example
+
+# --- local docs -----------------------------------------------------------
+# Session-by-session change notes. Kept out of the repo on purpose: the git
+# history already says what changed, and this file is conversation-local.
+CHANGES_MADE.md
+
+# --- editors / OS ---------------------------------------------------------
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# --- keep -----------------------------------------------------------------
+# backend/requirements.lock.txt IS committed on purpose — it is how four
+# laptops end up with the same transitive dependency versions.
+# fixtures/*.json IS committed on purpose — VITE_MOCK=true must work on a
+# fresh clone with no Python installed.

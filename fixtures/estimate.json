@@ -1,0 +1,7 @@
+{
+  "n_qubits": 8,
+  "hilbert_dim": 256,
+  "sims": 34264,
+  "mem_mb": 8.0,
+  "est_seconds": 77.7
+}

@@ -1,0 +1,79 @@
+[
+  {
+    "status": "queued",
+    "pct": 0,
+    "message": "Queued",
+    "run_id": null,
+    "error": null
+  },
+  {
+    "status": "preprocessing",
+    "pct": 5,
+    "message": "Loading 928 images",
+    "run_id": null,
+    "error": null
+  },
+  {
+    "status": "preprocessing",
+    "pct": 14,
+    "message": "Applying ops (412/928)",
+    "run_id": null,
+    "error": null
+  },
+  {
+    "status": "embedding",
+    "pct": 20,
+    "message": "ResNet18 forward (0/928)",
+    "run_id": null,
+    "error": null
+  },
+  {
+    "status": "embedding",
+    "pct": 41,
+    "message": "ResNet18 forward (512/928)",
+    "run_id": null,
+    "error": null
+  },
+  {
+    "status": "projecting",
+    "pct": 55,
+    "message": "PCA to 8 components",
+    "run_id": null,
+    "error": null
+  },
+  {
+    "status": "training",
+    "pct": 62,
+    "message": "Training svc (1/4)",
+    "run_id": null,
+    "error": null
+  },
+  {
+    "status": "training",
+    "pct": 70,
+    "message": "Training rf (2/4)",
+    "run_id": null,
+    "error": null
+  },
+  {
+    "status": "training",
+    "pct": 79,
+    "message": "Training qsvc (3/4)",
+    "run_id": null,
+    "error": null
+  },
+  {
+    "status": "training",
+    "pct": 91,
+    "message": "Training vqc (4/4)",
+    "run_id": null,
+    "error": null
+  },
+  {
+    "status": "done",
+    "pct": 100,
+    "message": "Done",
+    "run_id": "r_8f2a91",
+    "error": null
+  }
+]

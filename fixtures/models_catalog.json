@@ -1,0 +1,131 @@
+[
+  {
+    "name": "rf",
+    "kind": "classical",
+    "label": "Random Forest",
+    "param_schema": {
+      "n_estimators": {
+        "type": "int",
+        "min": 50,
+        "max": 1000,
+        "default": 300,
+        "label": "Trees"
+      },
+      "max_depth": {
+        "type": "int",
+        "min": 0,
+        "max": 50,
+        "default": 0,
+        "label": "Max depth",
+        "help": "0 = unlimited"
+      }
+    }
+  },
+  {
+    "name": "svc",
+    "kind": "classical",
+    "label": "SVC (RBF, tuned)",
+    "param_schema": {
+      "tune": {
+        "type": "bool",
+        "default": true,
+        "label": "Grid search",
+        "help": "Untuned baselines inflate the quantum gap. Leave this on."
+      },
+      "cv": {
+        "type": "int",
+        "min": 2,
+        "max": 10,
+        "default": 5,
+        "label": "CV folds"
+      }
+    }
+  },
+  {
+    "name": "qsvc",
+    "kind": "quantum",
+    "label": "Quantum Kernel SVC",
+    "param_schema": {
+      "tune": {
+        "type": "bool",
+        "default": true,
+        "label": "Tune bandwidth + C",
+        "help": "Cross-validates the kernel bandwidth. An untuned fidelity kernel can score below chance for reasons unrelated to whether quantum helps. Leave this on."
+      },
+      "bandwidth": {
+        "type": "float",
+        "min": 0.01,
+        "max": 1.0,
+        "default": 1.0,
+        "label": "Bandwidth",
+        "help": "Used only when tuning is off. 1.0 = the encoding's natural range."
+      },
+      "C": {
+        "type": "float",
+        "min": 0.01,
+        "max": 100.0,
+        "default": 1.0,
+        "label": "C",
+        "help": "Used only when tuning is off."
+      },
+      "cv": {
+        "type": "int",
+        "min": 2,
+        "max": 10,
+        "default": 5,
+        "label": "CV folds"
+      },
+      "batch_size": {
+        "type": "int",
+        "min": 16,
+        "max": 1024,
+        "default": 256,
+        "label": "Sim batch",
+        "help": "Statevectors simulated per call. Lower this if memory is tight."
+      }
+    }
+  },
+  {
+    "name": "vqc",
+    "kind": "quantum",
+    "label": "Variational Quantum Classifier",
+    "param_schema": {
+      "n_layers": {
+        "type": "int",
+        "min": 1,
+        "max": 6,
+        "default": 3,
+        "label": "Ansatz layers"
+      },
+      "epochs": {
+        "type": "int",
+        "min": 5,
+        "max": 200,
+        "default": 40,
+        "label": "Epochs"
+      },
+      "lr": {
+        "type": "float",
+        "min": 0.001,
+        "max": 0.5,
+        "default": 0.05,
+        "label": "Learning rate"
+      },
+      "batch_size": {
+        "type": "int",
+        "min": 4,
+        "max": 128,
+        "default": 24,
+        "label": "Batch size"
+      },
+      "bandwidth": {
+        "type": "float",
+        "min": 0.01,
+        "max": 1.0,
+        "default": 1.0,
+        "label": "Encoding bandwidth",
+        "help": "Not auto-tuned here -- a VQC fit is far too expensive to cross-validate five times. Read the value QSVC picked off the benchmark table and set it here."
+      }
+    }
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "label": "MI",
+  "confidences": {
+    "HB": 0.0214,
+    "MI": 0.9139,
+    "Normal": 0.0403,
+    "PMI": 0.0244
+  },
+  "latency_ms": 142.7
+}

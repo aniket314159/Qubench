@@ -1,0 +1,27 @@
+[
+  {
+    "dataset_id": "d_a1b2c3",
+    "dataset_name": "ECG Cardiac (Multan)",
+    "n_runs": 3,
+    "best_classical": {
+      "model": "rf",
+      "label": "Random Forest",
+      "accuracy": 0.8634,
+      "f1_macro": 0.8582,
+      "run_id": "r_8f2a91",
+      "encoding": "angle_y",
+      "n_features": 8
+    },
+    "best_quantum": {
+      "model": "qsvc",
+      "label": "Quantum Kernel SVC",
+      "accuracy": 0.9399,
+      "f1_macro": 0.9387,
+      "run_id": "r_8f2a91",
+      "encoding": "angle_y",
+      "n_features": 8
+    },
+    "delta": 0.0765,
+    "last_run_at": "2026-09-11T09:31:00+00:00"
+  }
+]

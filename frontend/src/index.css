@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — artboard 06 of the design, as Tailwind v4 theme variables.
+ *
+ * Every value here appears on the design system artboard. Declaring them once
+ * means a component writes `bg-quantum` rather than `bg-[#5B2BD9]`, and the two
+ * lanes stay honest: violet is quantum everywhere in the product, teal is
+ * classical. If something is violet and not quantum, it is a bug.
+ */
+@theme {
+  --color-quantum: #5b2bd9;
+  --color-quantum-soft: #efeafd;
+  --color-classical: #0b7a8c;
+  --color-classical-soft: #e2f1f4;
+
+  --color-ink: #0c1420;
+  --color-body: #3e4c61;
+  --color-muted: #74839a;
+  --color-rule: #dce4ee;
+  --color-hairline: #edf1f6;
+  --color-canvas: #f2f5f9;
+  --color-navy: #101826;
+
+  --color-ok: #0a7d46;
+  --color-caution: #b4690e;
+  --color-alert: #c0392b;
+
+  /* IBM Plex Sans for the interface, IBM Plex Mono for every number the
+     system measured — accuracies, timings, qubit counts, run ids. */
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Type scale from the design: display 25, section 16, card title 15,
+     body 13, label 11.5, micro 10.5. */
+  --text-display: 1.5625rem;
+  --text-section: 1rem;
+  --text-card: 0.9375rem;
+  --text-body: 0.8125rem;
+  --text-label: 0.71875rem;
+  --text-micro: 0.65625rem;
+
+  --radius-card: 10px;
+  --radius-control: 7px;
+}
+
+/* 1px borders, never a shadow. */
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-body);
+    background: var(--color-canvas);
+  }
+  /* Keyboard focus must stay visible — the demo is driven by someone else's
+     hands often enough that this matters. */
+  :focus-visible {
+    outline: 2px solid var(--color-quantum);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

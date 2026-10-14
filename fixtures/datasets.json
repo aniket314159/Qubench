@@ -1,0 +1,23 @@
+[
+  {
+    "dataset_id": "d_a1b2c3",
+    "name": "ECG Cardiac (Multan)",
+    "adapter": "image_folder",
+    "class_names": [
+      "HB",
+      "MI",
+      "Normal",
+      "PMI"
+    ],
+    "counts": {
+      "HB": 233,
+      "MI": 239,
+      "Normal": 284,
+      "PMI": 172
+    },
+    "n_samples": 928,
+    "n_classes": 4,
+    "modality": "ecg",
+    "created_at": "2026-09-11T09:14:00+00:00"
+  }
+]
